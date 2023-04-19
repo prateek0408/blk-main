@@ -14,13 +14,27 @@ export class ReportUseractionsareaComponent {
   currentChart: any = '';
   chartID: string = '';
   stopwords: string[] = ["i","me","my","myself","we","our","ours","ourselves","you","your","yours","yourself","yourselves","he","him","his","himself","she","her","hers","herself","it","its","itself","they","them","their","theirs","themselves","what","which","who","whom","this","that","these","those","am","is","are","was","were","be","been","being","have","has","had","having","do","does","did","doing","a","an","the","and","but","if","or","because","as","until","while","of","at","by","for","with","about","against","between","into","through","during","before","after","above","below","to","from","up","down","in","out","on","off","over","under","again","further","then","once","here","there","when","where","why","how","all","any","both","each","few","more","most","other","some","such","no","nor","not","only","own","same","so","than","too","very","s","t","can","will","just","don","should","now"];
-  xlabel: string[] = ["x label", "acceleable", "excitable", "label x", "ex lable", "ex label", "x level", "x-label", "label-x"];
+  xlabel: string[] = ["x label", "acceleable", "excitable", "label x", "ex lable", "ex label", "x level", "x-label", "label-x", "AC label"];
   ylabel: string[] = ["y label", "viable", "violable", "bilable", "label why", "lable y", "y-label", "label-y", "y level"];
+  slabel: string[] = ["secondary label", "secondary lable", "secondary label", "secondary level", "secondary-label"];
   xaxis: string[] = ["x axis", "exces", "exactis", "ex-axis", "ex axis", "x-axis", "access", "excess", "exacts"];
   yaxis: string[] = ["y axis", "y-axis", "axis y", "axis-y", "y exces", "y access", "y excess", "y exacts", "y exactis", "why exces", "why access", "why excess", "why exacts", "why exactis"];
   saxis: string[] = ["secondary axis", "secondary access", "secondary excess", "secondary exces", "secondary excess", "secondary exacts", "second axis", "second access", "second excess", "second exces", "second excess", "second exacts"];
 
   constructor(private papa: Papa) {
+  }
+
+  triggerAnnyang(e: any) {
+    if (e.keyCode == 13) {
+      if ((document.getElementById('speech-input') as HTMLInputElement).value.trim() == "") {
+        alert("Please enter a command.");
+      } else {
+        this.toggleSpeech(true);
+        
+        
+      }
+      
+    }
   }
 
   fileUpload() {
@@ -42,7 +56,7 @@ export class ReportUseractionsareaComponent {
   }
 
   parseCsvData(csvData: any) {
-    csvData['name'] = ((document.getElementById('inputGroupFile02') as HTMLInputElement).value).split('\\')[2]
+    csvData['name'] = "deals_data.csv";
     GlobalConstants.loadedData.push(csvData);
     console.log(GlobalConstants.loadedData);
     (document.getElementById('inputGroupFile02') as HTMLInputElement).value = "";
@@ -136,6 +150,8 @@ export class ReportUseractionsareaComponent {
         return this.matchAxisCols(['at', 'add', 'had', 'hard', 'are'], this.yaxis, tag, 'y-axis', 'y-label');
     } else if (this.xaxis.some(v => tag.includes(v))) {
       return this.matchAxisCols(['at', 'add', 'had', 'hard', 'are'], this.xaxis, tag, 'x-axis', 'x-label');
+    } else if (this.slabel.some(v => tag.includes(v))) {
+      return this.matchLabels('s-label');
     } else if (this.xlabel.some(v => tag.includes(v))) {
       return this.matchLabels('x-label');
     } else if (this.ylabel.some(v => tag.includes(v))) {
@@ -145,15 +161,17 @@ export class ReportUseractionsareaComponent {
     }
   }
 
-  toggleSpeech() {
-    if((document.getElementById('speech-search') as HTMLInputElement).innerText == " Mic On") {
+  toggleSpeech(bypassMic=false) {
+    if(((document.getElementById('speech-search') as HTMLInputElement).innerText == " Mic On") || (bypassMic == true)) {
       if (annyang) {
         let createVis =  (tag: any) => {
           tag = tag.toLowerCase();
           switch (true) {
-            case ((tag.indexOf("bar chart") !=-1) || (tag.indexOf("bar chat") !=-1)):
+            case ((tag.indexOf("bar chart") !=-1) || (tag.indexOf("bar chat") !=-1) || (tag.indexOf("bath chart") !=-1)):
+              (document.getElementById('dashboard-area') as HTMLInputElement).style.display = "none";
+              (document.getElementById('chart-area') as HTMLInputElement).style.display = "block";
               this.chartID = "chart" + Date.now();
-              GlobalConstants.chartJSON[this.chartID] = {'type':'bar'};
+              GlobalConstants.chartJSON[this.chartID] = {'type':'bar', "data-labels":false, "legend":[]};
               this.currentChart = this.chartID;
               console.log(GlobalConstants.chartJSON)
               console.log('bar chart created'); break;
@@ -199,7 +217,9 @@ export class ReportUseractionsareaComponent {
         let updateVis =  (tag: any) => {
           tag = tag.toLowerCase();
           console.log(tag);
-          if (this.xlabel.some(v => tag.includes(v))) {
+          if (this.slabel.some(v => tag.includes(v))) {
+            return this.matchLabels('s-label');
+          } else if (this.xlabel.some(v => tag.includes(v))) {
               return this.matchLabels('x-label');
           } else if (this.ylabel.some(v => tag.includes(v))) {
               return this.matchLabels('y-label');
@@ -207,6 +227,15 @@ export class ReportUseractionsareaComponent {
               return 5;
           }
           
+        }
+
+        let saveChart =  (tag: any) => {
+          tag = tag.toLowerCase();
+          console.log(tag);
+          (document.getElementById('dashboard-area') as HTMLInputElement).style.display = "block";
+          (document.getElementById('new-chart') as HTMLInputElement).innerHTML = (document.getElementById('visualizations') as HTMLInputElement).innerHTML;
+          (document.getElementById('visualizations') as HTMLInputElement).innerHTML = '<div id="current-chart"></div>';
+          (document.getElementById('chart-area') as HTMLInputElement).style.display = "none";
         }
 
         let commands = {
@@ -223,6 +252,7 @@ export class ReportUseractionsareaComponent {
           'update *tag': updateVis,
           'delete *tag': deleteVis,
           'load data *tag': loadData,
+          'save *tag': saveChart,
         };
 
         annyang.addCommands(commands);
@@ -233,8 +263,19 @@ export class ReportUseractionsareaComponent {
             console.log('no match: ' + userSaid); // sample output: 'hello'
             (document.getElementById('speech-input') as HTMLInputElement).value = userSaid;
         });
+        annyang.addCallback('start', function(){
+          if (bypassMic) {
+            annyang.trigger((document.getElementById('speech-input') as HTMLInputElement).value);
+            console.log('annyang trigger');
+            annyang.removeCallback();
+            annyang.abort();
+            (document.getElementById('speech-input') as HTMLInputElement).value = "";
+          } else{
+            (document.getElementById('speech-search') as HTMLInputElement).innerHTML = '<i class="bi bi-mic-mute-fill"></i> Mic Off'
+          }
+        })
         annyang.start();
-        (document.getElementById('speech-search') as HTMLInputElement).innerHTML = '<i class="bi bi-mic-mute-fill"></i> Mic Off'
+        
       } else {
           alert('Could not start Annyang')
       }

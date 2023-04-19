@@ -1,0 +1,101 @@
+asset id,company name,deal id,deal company type,deal country,deal date received,deal final commitment,deal date received date,deal date received month,deal date received year
+6640,company1,1000001,Government,Norway,1 Jan 2023,935613595,1 ,1,2023
+5918,company2,1000002,Private Company,Australia,2 Jan 2023,59919255,2 ,1,2023
+2853,company3,1000003,Institutional Investor,Norway,3 Jan 2023,646538115,3 ,1,2023
+6615,company4,1000004,Government,USA,4 Jan 2023,180561196,4 ,1,2023
+9807,company5,1000005,Institutional Investor,USA,5 Jan 2023,695598189,5 ,1,2023
+9231,company6,1000006,Private Company,Australia,6 Jan 2023,121709050,6 ,1,2023
+8159,company7,1000007,Institutional Investor,Norway,7 Jan 2023,996635598,7 ,1,2023
+1551,company8,1000008,Conglomerate,USA,8 Jan 2023,899568734,8 ,1,2023
+9738,company9,1000009,Private Company,USA,9 Jan 2023,386855732,9 ,1,2023
+3882,company10,1000010,Government,USA,10 Jan 2023,892205690,10 ,1,2023
+9171,company11,1000011,Conglomerate,Australia,11 Jan 2023,330293241,11 ,1,2023
+3300,company12,1000012,Public Company,Norway,12 Jan 2023,363175292,12 ,1,2023
+8684,company13,1000013,Conglomerate,USA,13 Jan 2023,767723446,13 ,1,2023
+4630,company14,1000014,Conglomerate,USA,14 Jan 2023,624041752,14 ,1,2023
+7071,company15,1000015,Conglomerate,Norway,15 Jan 2023,708716275,15 ,1,2023
+4056,company16,1000016,Public Company,Japan,16 Jan 2023,903595834,16 ,1,2023
+9677,company17,1000017,Private Company,Norway,17 Jan 2023,394632685,17 ,1,2023
+8913,company18,1000018,Government,USA,18 Jan 2023,730233937,18 ,1,2023
+4301,company19,1000019,Public Company,Norway,19 Jan 2023,941384266,19 ,1,2023
+8815,company20,1000020,Private Company,Japan,20 Jan 2023,279977618,20 ,1,2023
+5660,company21,1000021,Public Company,USA,21 Jan 2023,652315976,21 ,1,2023
+9987,company22,1000022,Public Company,USA,22 Jan 2023,683948901,22 ,1,2023
+5928,company23,1000023,Institutional Investor,USA,23 Jan 2023,565321909,23 ,1,2023
+4482,company24,1000024,Institutional Investor,USA,24 Jan 2023,403579076,24 ,1,2023
+2313,company25,1000025,Private Company,Japan,25 Jan 2023,718552905,25 ,1,2023
+1111,company26,1000026,Government,Japan,26 Jan 2023,434560787,26 ,1,2023
+9463,company27,1000027,Public Company,Australia,27 Jan 2023,111202591,27 ,1,2023
+1071,company28,1000028,Conglomerate,Japan,28 Jan 2023,671547107,28 ,1,2023
+6124,company29,1000029,Government,USA,29 Jan 2023,43840487,29 ,1,2023
+8848,company30,1000030,Institutional Investor,Norway,30 Jan 2023,417189637,30 ,1,2023
+7014,company31,1000031,Private Company,USA,31 Jan 2023,226664747,31 ,1,2023
+8287,company32,1000032,Private Company,Japan,1 Feb 2023,913469776,1 ,2,2023
+8773,company33,1000033,Public Company,USA,2 Feb 2023,647535395,2 ,2,2023
+2346,company34,1000034,Conglomerate,Japan,3 Feb 2023,529932259,3 ,2,2023
+3521,company35,1000035,Government,Japan,4 Feb 2023,909477935,4 ,2,2023
+4971,company36,1000036,Conglomerate,USA,5 Feb 2023,86746700,5 ,2,2023
+5367,company37,1000037,Institutional Investor,Japan,6 Feb 2023,662865293,6 ,2,2023
+8407,company38,1000038,Institutional Investor,USA,7 Feb 2023,757205335,7 ,2,2023
+9106,company39,1000039,Institutional Investor,Japan,8 Feb 2023,940137926,8 ,2,2023
+3836,company40,1000040,Conglomerate,Norway,9 Feb 2023,760871804,9 ,2,2023
+6372,company41,1000041,Government,Norway,10 Feb 2023,43743567,10 ,2,2023
+2268,company42,1000042,Public Company,USA,11 Feb 2023,399017516,11 ,2,2023
+9219,company43,1000043,Institutional Investor,Japan,12 Feb 2023,555101766,12 ,2,2023
+2448,company44,1000044,Private Company,USA,13 Feb 2023,276963813,13 ,2,2023
+3401,company45,1000045,Government,USA,14 Feb 2023,176546190,14 ,2,2023
+3277,company46,1000046,Government,Norway,15 Feb 2023,914570974,15 ,2,2023
+8369,company47,1000047,Government,USA,16 Feb 2023,638191728,16 ,2,2023
+5646,company48,1000048,Institutional Investor,USA,17 Feb 2023,907307129,17 ,2,2023
+8112,company49,1000049,Conglomerate,USA,18 Feb 2023,19921829,18 ,2,2023
+7065,company50,1000050,Institutional Investor,Japan,19 Feb 2023,594364700,19 ,2,2023
+3711,company51,1000051,Public Company,Australia,20 Feb 2023,908702888,20 ,2,2023
+9457,company52,1000052,Conglomerate,Norway,21 Feb 2023,420281569,21 ,2,2023
+7587,company53,1000053,Conglomerate,Japan,22 Feb 2023,55305858,22 ,2,2023
+9382,company54,1000054,Government,USA,23 Feb 2023,897930193,23 ,2,2023
+1648,company55,1000055,Institutional Investor,Japan,24 Feb 2023,30442695,24 ,2,2023
+4088,company56,1000056,Private Company,Australia,25 Feb 2023,458861337,25 ,2,2023
+3523,company57,1000057,Private Company,Australia,26 Feb 2023,980095743,26 ,2,2023
+9517,company58,1000058,Government,USA,27 Feb 2023,584477492,27 ,2,2023
+7920,company59,1000059,Private Company,Australia,28 Feb 2023,176311461,28 ,2,2023
+8765,company60,1000060,Private Company,Japan,1 Mar 2023,25854701,1 ,3,2023
+2428,company61,1000061,Conglomerate,Australia,2 Mar 2023,964420250,2 ,3,2023
+8095,company62,1000062,Private Company,USA,3 Mar 2023,51062724,3 ,3,2023
+1351,company63,1000063,Private Company,USA,4 Mar 2023,528101373,4 ,3,2023
+2031,company64,1000064,Government,USA,5 Mar 2023,356233057,5 ,3,2023
+6827,company65,1000065,Government,Australia,6 Mar 2023,951096934,6 ,3,2023
+5082,company66,1000066,Government,Australia,7 Mar 2023,337410380,7 ,3,2023
+9545,company67,1000067,Public Company,Australia,8 Mar 2023,740947075,8 ,3,2023
+5612,company68,1000068,Institutional Investor,USA,9 Mar 2023,916263288,9 ,3,2023
+3158,company69,1000069,Private Company,Japan,10 Mar 2023,126721984,10 ,3,2023
+3044,company70,1000070,Government,Australia,11 Mar 2023,628232246,11 ,3,2023
+1337,company71,1000071,Government,Australia,12 Mar 2023,826304759,12 ,3,2023
+6107,company72,1000072,Institutional Investor,USA,13 Mar 2023,320710456,13 ,3,2023
+1651,company73,1000073,Public Company,Norway,14 Mar 2023,349873299,14 ,3,2023
+1062,company74,1000074,Institutional Investor,Norway,15 Mar 2023,532781337,15 ,3,2023
+6748,company75,1000075,Conglomerate,Norway,16 Mar 2023,966467015,16 ,3,2023
+7578,company76,1000076,Public Company,USA,17 Mar 2023,913117760,17 ,3,2023
+5965,company77,1000077,Conglomerate,Australia,18 Mar 2023,390132797,18 ,3,2023
+7197,company78,1000078,Conglomerate,Japan,19 Mar 2023,927463519,19 ,3,2023
+6487,company79,1000079,Public Company,USA,20 Mar 2023,207439401,20 ,3,2023
+4572,company80,1000080,Conglomerate,USA,21 Mar 2023,120098257,21 ,3,2023
+5801,company81,1000081,Public Company,Japan,22 Mar 2023,769045859,22 ,3,2023
+4100,company82,1000082,Public Company,Australia,23 Mar 2023,400600416,23 ,3,2023
+2842,company83,1000083,Conglomerate,USA,24 Mar 2023,445510575,24 ,3,2023
+2238,company84,1000084,Public Company,USA,25 Mar 2023,808688857,25 ,3,2023
+9989,company85,1000085,Public Company,USA,26 Mar 2023,391234998,26 ,3,2023
+5152,company86,1000086,Public Company,Norway,27 Mar 2023,368896892,27 ,3,2023
+6884,company87,1000087,Institutional Investor,Japan,28 Mar 2023,46040894,28 ,3,2023
+1967,company88,1000088,Conglomerate,Norway,29 Mar 2023,626118747,29 ,3,2023
+4815,company89,1000089,Institutional Investor,USA,30 Mar 2023,460672920,30 ,3,2023
+9537,company90,1000090,Public Company,Norway,31 Mar 2023,352812318,31 ,3,2023
+9511,company91,1000091,Private Company,Australia,1 Apr 2023,890875468,1 ,4,2023
+8438,company92,1000092,Government,USA,2 Apr 2023,913835644,2 ,4,2023
+9432,company93,1000093,Conglomerate,Australia,3 Apr 2023,793593514,3 ,4,2023
+9755,company94,1000094,Private Company,USA,4 Apr 2023,542868842,4 ,4,2023
+4783,company95,1000095,Institutional Investor,Japan,5 Apr 2023,193356064,5 ,4,2023
+3025,company96,1000096,Private Company,Australia,6 Apr 2023,382310270,6 ,4,2023
+9291,company97,1000097,Government,Norway,7 Apr 2023,335682622,7 ,4,2023
+9397,company98,1000098,Private Company,Australia,8 Apr 2023,980951971,8 ,4,2023
+1380,company99,1000099,Private Company,Norway,9 Apr 2023,957161974,9 ,4,2023
+9270,company100,1000100,Institutional Investor,Japan,10 Apr 2023,350005232,10 ,4,2023
