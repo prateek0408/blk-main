@@ -8,6 +8,7 @@ import { ReportChartareaComponent } from './components/report-chartarea/report-c
 import { ReportConfigareaComponent } from './components/report-configarea/report-configarea.component';
 import { ReportDatamodelareaComponent } from './components/report-datamodelarea/report-datamodelarea.component';
 import { ReportUseractionsareaComponent } from './components/report-useractionsarea/report-useractionsarea.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ReportUseractionsareaComponent } from './components/report-useractionsa
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
