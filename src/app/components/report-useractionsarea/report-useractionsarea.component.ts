@@ -196,6 +196,13 @@ export class ReportUseractionsareaComponent {
         let updateVis =  (tag: any) => {
           tag = tag.toLowerCase();
           console.log(tag);
+          if (this.xlabel.some(v => tag.includes(v))) {
+              return this.matchLabels('x-label');
+          } else if (this.ylabel.some(v => tag.includes(v))) {
+              return this.matchLabels('y-label');
+          } else {
+              return 5;
+          }
           
         }
 
