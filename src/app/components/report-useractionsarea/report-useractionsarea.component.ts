@@ -98,13 +98,15 @@ export class ReportUseractionsareaComponent {
       var colVals = this.fuzzyMatch(cleanQuery, Object.keys(GlobalConstants.loadedData[0].data[0]));
       console.log(colVals)
       console.log(GlobalConstants.chartJSON);
+      console.log(JSON.stringify(GlobalConstants.chartJSON));
       if(JSON.stringify(GlobalConstants.chartJSON) == "{}"){
         alert('Please add a chart first');
         
       } else {
         GlobalConstants.chartJSON[this.chartID][e] = colVals['label']
         GlobalConstants.chartJSON[this.chartID][d] = colVals['data']
-        console.log(GlobalConstants.chartJSON)
+        console.log(GlobalConstants.chartJSON);
+        console.log(JSON.stringify(GlobalConstants.chartJSON));
       }
     }
 
@@ -118,6 +120,7 @@ export class ReportUseractionsareaComponent {
     } else {
       GlobalConstants.chartJSON[this.chartID][a] ="xxxxx"
       console.log(GlobalConstants.chartJSON)
+      console.log(JSON.stringify(GlobalConstants.chartJSON));
     }
   }
   
@@ -213,6 +216,7 @@ export class ReportUseractionsareaComponent {
           'at *tag': addVis,
           'had *tag': addVis,
           'are *tag': addVis,
+          'art *tag': addVis,
           'hard *tag': addVis,
           'use *tag': useVis,
           'change *tag': updateVis,
