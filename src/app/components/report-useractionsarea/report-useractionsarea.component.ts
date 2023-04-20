@@ -18,7 +18,7 @@ export class ReportUseractionsareaComponent {
   ylabel: string[] = ["y label", "viable", "violable", "bilable", "label why", "lable y", "y-label", "label-y", "y level"];
   slabel: string[] = ["secondary label", "secondary lable", "secondary label", "secondary level", "secondary-label"];
   xaxis: string[] = ["x axis", "exces", "exactis", "ex-axis", "ex axis", "x-axis", "access", "excess", "exacts"];
-  yaxis: string[] = ["y axis", "y-axis", "axis y", "axis-y", "y exces", "y access", "y excess", "y exacts", "y exactis", "why exces", "why access", "why excess", "why exacts", "why exactis"];
+  yaxis: string[] = ["y axis", "y-axis", "axis y", "axis-y", "y exces", "y access", "y excess", "y exacts", "y exactis", "why exces", "why access", "why excess", "why exacts", "why exactis", "via"];
   saxis: string[] = ["secondary axis", "secondary access", "secondary excess", "secondary exces", "secondary excess", "secondary exacts", "second axis", "second access", "second excess", "second exces", "second excess", "second exacts"];
 
   constructor(private papa: Papa) {
@@ -117,8 +117,9 @@ export class ReportUseractionsareaComponent {
         alert('Please add a chart first');
         
       } else {
-        GlobalConstants.chartJSON[this.chartID][e] = colVals['label']
-        GlobalConstants.chartJSON[this.chartID][d] = colVals['data']
+        GlobalConstants.chartJSON[this.chartID][e] = colVals['label'];
+        GlobalConstants.chartJSON[this.chartID][d] = colVals['data'];
+        (document.getElementById('feedback') as HTMLInputElement).innerText = "Added data to " + d;
         console.log(GlobalConstants.chartJSON);
         console.log(JSON.stringify(GlobalConstants.chartJSON));
       }
@@ -149,7 +150,7 @@ export class ReportUseractionsareaComponent {
     } else if (this.yaxis.some(v => tag.includes(v))) {
         return this.matchAxisCols(['at', 'add', 'had', 'hard', 'are'], this.yaxis, tag, 'y-axis', 'y-label');
     } else if (this.xaxis.some(v => tag.includes(v))) {
-      return this.matchAxisCols(['at', 'add', 'had', 'hard', 'are'], this.xaxis, tag, 'x-axis', 'x-label');
+        return this.matchAxisCols(['at', 'add', 'had', 'hard', 'are'], this.xaxis, tag, 'x-axis', 'x-label');
     } else if (this.slabel.some(v => tag.includes(v))) {
       return this.matchLabels('s-label');
     } else if (this.xlabel.some(v => tag.includes(v))) {
@@ -164,16 +165,17 @@ export class ReportUseractionsareaComponent {
   toggleSpeech(bypassMic=false) {
     if(((document.getElementById('speech-search') as HTMLInputElement).innerText == " Mic On") || (bypassMic == true)) {
       if (annyang) {
+
+
         let createVis =  (tag: any) => {
           tag = tag.toLowerCase();
           switch (true) {
             case ((tag.indexOf("bar chart") !=-1) || (tag.indexOf("bar chat") !=-1) || (tag.indexOf("bath chart") !=-1)):
-              (document.getElementById('dashboard-area') as HTMLInputElement).style.display = "none";
-              (document.getElementById('chart-area') as HTMLInputElement).style.display = "block";
               this.chartID = "chart" + Date.now();
               GlobalConstants.chartJSON[this.chartID] = {'type':'bar', "data-labels":false, "legend":[]};
               this.currentChart = this.chartID;
-              console.log(GlobalConstants.chartJSON)
+              console.log(GlobalConstants.chartJSON);
+              (document.getElementById('feedback') as HTMLInputElement).innerText = "Bar Chart created.";
               console.log('bar chart created'); break;
             case (tag.indexOf("new dashboard") !=-1):
               console.log('new dashboard'); break;
@@ -211,17 +213,21 @@ export class ReportUseractionsareaComponent {
           console.log(tag);
           if ((tag.indexOf('excel')>-1) || (tag.indexOf('axel')>-1) || (tag.indexOf('xl')>-1)) {
             this.fileUpload();
+            (document.getElementById('feedback') as HTMLInputElement).innerText = "Excel file loaded.";
           }
         }
 
-        let updateVis =  (tag: any) => {
+        let changeVis =  (tag: any) => {
           tag = tag.toLowerCase();
           console.log(tag);
           if (this.slabel.some(v => tag.includes(v))) {
+            (document.getElementById('feedback') as HTMLInputElement).innerText = "Secondary label added.";
             return this.matchLabels('s-label');
           } else if (this.xlabel.some(v => tag.includes(v))) {
+            (document.getElementById('feedback') as HTMLInputElement).innerText = "X label added.";
               return this.matchLabels('x-label');
           } else if (this.ylabel.some(v => tag.includes(v))) {
+            (document.getElementById('feedback') as HTMLInputElement).innerText = "Y label added.";
               return this.matchLabels('y-label');
           } else {
               return 5;
@@ -229,13 +235,52 @@ export class ReportUseractionsareaComponent {
           
         }
 
-        let saveChart =  (tag: any) => {
+        let updateVis =  (tag: any) => {
+          tag = tag.toLowerCase();
+          console.log(tag);
+          if( (tag.indexOf('title'))>-1 ) {
+            GlobalConstants.chartJSON[this.chartID]['title'] = {"display": true, text: 'Chart Title'};
+            (document.getElementById('feedback') as HTMLInputElement).innerText = "Chart title added.";
+          }
+        }
+
+        let backToChart =  (tag: any) => {
+          tag = tag.toLowerCase();
+          console.log(tag);
+          (document.getElementById('dashboard-area') as HTMLInputElement).style.display = "none";
+          //(document.getElementById('new-chart') as HTMLInputElement).innerHTML = (document.getElementById('visualizations') as HTMLInputElement).innerHTML;
+          //(document.getElementById('visualizations') as HTMLInputElement).innerHTML = '<div id="current-chart"></div>';
+          (document.getElementById('chart-area') as HTMLInputElement).style.display = "block";
+          (document.getElementById('helper') as HTMLInputElement).style.display = "none";
+        }
+
+        let showDashboard =  (tag: any) => {
           tag = tag.toLowerCase();
           console.log(tag);
           (document.getElementById('dashboard-area') as HTMLInputElement).style.display = "block";
-          (document.getElementById('new-chart') as HTMLInputElement).innerHTML = (document.getElementById('visualizations') as HTMLInputElement).innerHTML;
-          (document.getElementById('visualizations') as HTMLInputElement).innerHTML = '<div id="current-chart"></div>';
           (document.getElementById('chart-area') as HTMLInputElement).style.display = "none";
+          (document.getElementById('helper') as HTMLInputElement).style.display = "none";
+        }
+
+        let saveChart =  (tag: any) => {
+          tag = tag.toLowerCase();
+          console.log(tag);
+          (document.getElementById('feedback') as HTMLInputElement).innerText = "Chart saved successfully!";
+        }
+
+        let helpVis =  (tag: any) => {
+          tag = tag.toLowerCase();
+          console.log(tag);
+          (document.getElementById('dashboard-area') as HTMLInputElement).style.display = "none";
+          (document.getElementById('chart-area') as HTMLInputElement).style.display = "none";
+          (document.getElementById('helper') as HTMLInputElement).style.display = "block";
+        }
+
+        let enableVis =  (tag: any) => {
+          tag = tag.toLowerCase();
+          console.log(tag);
+          GlobalConstants.colorwheel = ["rgb(230, 159, 0)", "rgb(86, 180, 233)", "rgb(0, 158, 115)", "rgb(240, 228, 66)"];
+          (document.getElementById('feedback') as HTMLInputElement).innerText = "Color-assist enabled.";
         }
 
         let commands = {
@@ -248,11 +293,18 @@ export class ReportUseractionsareaComponent {
           'art *tag': addVis,
           'hard *tag': addVis,
           'use *tag': useVis,
-          'change *tag': updateVis,
+          'change *tag': changeVis,
           'update *tag': updateVis,
           'delete *tag': deleteVis,
           'load data *tag': loadData,
           'save *tag': saveChart,
+          'thanks *tag': saveChart,
+          'show *tag': showDashboard,
+          'so *tag': showDashboard,
+          'go *tag': backToChart, 
+          'help *tag': helpVis, 
+          'health *tag': helpVis, 
+          'enable *tag': enableVis,
         };
 
         annyang.addCommands(commands);

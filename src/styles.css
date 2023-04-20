@@ -27,3 +27,7 @@
 .chart-section {
     margin-bottom: 1rem;
 }
+
+.highlight-yellow {
+    background-color: yellowgreen;
+}

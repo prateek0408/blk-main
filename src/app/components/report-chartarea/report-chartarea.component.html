@@ -1,4 +1,4 @@
-<div id="dashboard-area" style="background-color: #fafafa;" class="px-2 py-3">
+<div id="dashboard-area" style="background-color: #fafafa; display: none;" class="px-2 py-3">
     <h1 id="dashboard-header" class="display-4 ff-mw" style="border-bottom: 1px  dotted black;">BLK Alts Deals</h1>
     <div style="border-bottom: 1px dotted black;" class="chart-section">
         <p id="dashboard-summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras posuere in turpis ut sodales. In placerat velit tellus, laoreet volutpat ante maximus non. Sed rutrum felis augue, sit amet tempor erat tincidunt ornare.</p>
@@ -8,7 +8,7 @@
                 <div class="card" >
                     <div class="text-center">
                       <p class="ff-os chart-title"><small>Metric 1</small></p>
-                      <p class="ff-os chart-card-text">2100</p>
+                      <p class="ff-os chart-card-text">2,100</p>
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                 <div class="card" >
                     <div class="text-center">
                       <p class="ff-os chart-title"><small>Metric 2</small></p>
-                      <p class="ff-os chart-card-text">1721</p>
+                      <p class="ff-os chart-card-text">1,721</p>
                     </div>
                 </div>
             </div>
@@ -53,11 +53,28 @@
 
 </div>
 
-<div id="chart-area" style="display: none;"  class="px-2 py-3">
+<div id="chart-area" class="px-2 py-3">
     <h1 class="display-5 ff-mw" style="border-bottom: 1px  dotted black;">Chart Area</h1>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras posuere in turpis ut sodales.</p>
+
+    <p id="feedback" class="highlight-yellow px-4"></p>
     
     <div id="visualizations">
         <div id="current-chart"></div>
     </div>
+</div>
+
+<div id="helper" style="display: none;">
+    <h1 class="display-6 ff-mw" style="border-bottom: 1px  dotted black;">Here are some things you can try:</h1>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <img class="mx-2 mb-3" src="data:image/png;base64,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" />
+    <img class="mx-2 mb-3" src="data:image/png;base64,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" />
+    <ul>
+        <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
+        <li>Aliquam tincidunt mauris eu risus.</li>
+        <li>Vestibulum auctor dapibus neque.</li>
+        <li>Nunc dignissim risus id metus.</li>
+        <li>Cras ornare tristique elit.</li>
+    </ul>
 </div>
