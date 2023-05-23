@@ -1,3 +1,5 @@
+<ng-container #viewContainer></ng-container>
+
 <div id="dashboard-area" style="background-color: #fafafa; display: none;" class="px-2 py-3">
     <h1 id="dashboard-header" class="display-4 ff-mw" style="border-bottom: 1px  dotted black;">BLK Alts Deals</h1>
     <div style="border-bottom: 1px dotted black;" class="chart-section">
@@ -43,12 +45,17 @@
         </div>
     </div>
     <div style="border-bottom: 1px dotted black;" class="chart-section">
+        <h4 id="dashboard-subheader" class="ff-ms">Market Data</h4>
         <p id="dashboard-summary">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras posuere in turpis ut sodales. In placerat velit tellus, laoreet volutpat ante maximus non.</p>
         <div class="row">
-            <div class="col-6">
-                <div id="new-chart"></div>
-            </div>
+            <img class="py-3" style="width: 40%; height: 200px" src="https://static.vaadin.com/directory/user35550/screenshot/file8494337878231358249_15061520778722017-09-2309_33_26-VaadinChart.jsAddon.png" />
+            <img class="py-3" style="width: 40%; height: 200px" src="https://i.stack.imgur.com/SY5hu.png" />
         </div>
+        <div class="row">
+            <img class="py-3" style="width: 40%; height: 200px" src="https://www.cdn.geeksforgeeks.org/wp-content/uploads/Screenshot-from-2018-07-03-12-00-44.png" />
+            <img class="py-3" style="width: 40%; height: 200px" src="https://image-charts.com/chart.js/2.8.0?bkg=white&c=%7Btype%3A%27line%27%2Cdata%3A%7Blabels%3A%5B%27Jan%27%2C%27Feb%27%2C%27Mar%27%2C%27Apr%27%2C%27May%27%2C%27Jun%27%2C%27Jul%27%2C%27Aug%27%5D%2Cdatasets%3A%5B%7BbackgroundColor%3A%27rgba(255%2C150%2C150%2C0.5)%27%2CborderColor%3A%27rgb(255%2C150%2C150)%27%2Cdata%3A%5B-23%2C64%2C21%2C53%2C-39%2C-30%2C28%2C-10%5D%2Clabel%3A%27Dataset%27%2Cfill%3A%27origin%27%7D%5D%7D%7D" />
+        </div>
+        
     </div>
 
 </div>
@@ -60,7 +67,8 @@
     <p id="feedback" class="highlight-yellow px-4"></p>
     
     <div id="visualizations">
-        <div id="current-chart"></div>
+        <div id="chart0"></div>
+        <canvas id="current-chart"></canvas>
     </div>
 </div>
 

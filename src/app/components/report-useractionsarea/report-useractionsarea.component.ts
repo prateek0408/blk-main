@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { GlobalConstants } from 'src/app/common/global-constants';
 import { Papa } from 'ngx-papaparse';
 import { go } from 'fuzzysort';
+//import * as ChartJs from 'chart.js';
+import { Chart, CategoryScale, ChartConfiguration, BarController, BarControllerChartOptions, BarOptions, BarProps, BarControllerDatasetOptions, BarHoverOptions, LineController, LineElement, PointElement, LinearScale, Title, BarElement} from 'chart.js' 
+Chart.register(LineController, CategoryScale, LineElement, BarController, PointElement, LinearScale, BarElement, Title);
 import * as fuzzysort from 'fuzzysort';
 declare const annyang: any;
 
@@ -119,6 +122,7 @@ export class ReportUseractionsareaComponent {
       } else {
         GlobalConstants.chartJSON[this.chartID][e] = colVals['label'];
         GlobalConstants.chartJSON[this.chartID][d] = colVals['data'];
+        this.createChart();
         (document.getElementById('feedback') as HTMLInputElement).innerText = "Added data to " + d;
         console.log(GlobalConstants.chartJSON);
         console.log(JSON.stringify(GlobalConstants.chartJSON));
@@ -162,6 +166,8 @@ export class ReportUseractionsareaComponent {
     }
   }
 
+  
+
   toggleSpeech(bypassMic=false) {
     if(((document.getElementById('speech-search') as HTMLInputElement).innerText == " Mic On") || (bypassMic == true)) {
       if (annyang) {
@@ -172,9 +178,10 @@ export class ReportUseractionsareaComponent {
           switch (true) {
             case ((tag.indexOf("bar chart") !=-1) || (tag.indexOf("bar chat") !=-1) || (tag.indexOf("bath chart") !=-1)):
               this.chartID = "chart" + Date.now();
-              GlobalConstants.chartJSON[this.chartID] = {'type':'bar', "data-labels":false, "legend":[]};
+              GlobalConstants.chartJSON[this.chartID] = {'type':'bar', "data-labels":false, "legend":[], "title": {"display": false, text: ''}};
               this.currentChart = this.chartID;
               console.log(GlobalConstants.chartJSON);
+              this.createChart();
               (document.getElementById('feedback') as HTMLInputElement).innerText = "Bar Chart created.";
               console.log('bar chart created'); break;
             case (tag.indexOf("new dashboard") !=-1):
@@ -184,6 +191,8 @@ export class ReportUseractionsareaComponent {
            }
           
         }
+
+    
 
         let removeVis = function (tag: any) {
           tag = tag.toLowerCase();
@@ -213,6 +222,7 @@ export class ReportUseractionsareaComponent {
           console.log(tag);
           if ((tag.indexOf('excel')>-1) || (tag.indexOf('axel')>-1) || (tag.indexOf('xl')>-1)) {
             this.fileUpload();
+            
             (document.getElementById('feedback') as HTMLInputElement).innerText = "Excel file loaded.";
           }
         }
@@ -221,12 +231,15 @@ export class ReportUseractionsareaComponent {
           tag = tag.toLowerCase();
           console.log(tag);
           if (this.slabel.some(v => tag.includes(v))) {
+            this.createChart();
             (document.getElementById('feedback') as HTMLInputElement).innerText = "Secondary label added.";
             return this.matchLabels('s-label');
           } else if (this.xlabel.some(v => tag.includes(v))) {
+            this.createChart();
             (document.getElementById('feedback') as HTMLInputElement).innerText = "X label added.";
               return this.matchLabels('x-label');
           } else if (this.ylabel.some(v => tag.includes(v))) {
+            this.createChart();
             (document.getElementById('feedback') as HTMLInputElement).innerText = "Y label added.";
               return this.matchLabels('y-label');
           } else {
@@ -240,6 +253,7 @@ export class ReportUseractionsareaComponent {
           console.log(tag);
           if( (tag.indexOf('title'))>-1 ) {
             GlobalConstants.chartJSON[this.chartID]['title'] = {"display": true, text: 'Chart Title'};
+            this.createChart();
             (document.getElementById('feedback') as HTMLInputElement).innerText = "Chart title added.";
           }
         }
@@ -252,6 +266,9 @@ export class ReportUseractionsareaComponent {
           //(document.getElementById('visualizations') as HTMLInputElement).innerHTML = '<div id="current-chart"></div>';
           (document.getElementById('chart-area') as HTMLInputElement).style.display = "block";
           (document.getElementById('helper') as HTMLInputElement).style.display = "none";
+
+          
+          
         }
 
         let showDashboard =  (tag: any) => {
@@ -265,6 +282,7 @@ export class ReportUseractionsareaComponent {
         let saveChart =  (tag: any) => {
           tag = tag.toLowerCase();
           console.log(tag);
+          this.createChart();
           (document.getElementById('feedback') as HTMLInputElement).innerText = "Chart saved successfully!";
         }
 
@@ -280,12 +298,14 @@ export class ReportUseractionsareaComponent {
           tag = tag.toLowerCase();
           console.log(tag);
           GlobalConstants.colorwheel = ["rgb(230, 159, 0)", "rgb(86, 180, 233)", "rgb(0, 158, 115)", "rgb(240, 228, 66)"];
+          this.createChart();
           (document.getElementById('feedback') as HTMLInputElement).innerText = "Color-assist enabled.";
         }
 
         let commands = {
           'create *tag': createVis,
           'remove *tag': removeVis,
+          '8 *tag': addVis,
           'add *tag': addVis,
           'at *tag': addVis,
           'had *tag': addVis,
@@ -341,6 +361,33 @@ export class ReportUseractionsareaComponent {
     }
     }
   }
+  public createChart() {
+    
+    (document.getElementById('visualizations') as HTMLInputElement).innerHTML = '<div id="chart0"></div><canvas id="current-chart"></canvas>'
+    
+    
+    if ( JSON.stringify(GlobalConstants.chartJSON) == "{}" ) {
+      console.log(1);
+      (document.getElementById('chart0') as HTMLInputElement).innerHTML =  "<img src='https://user-images.githubusercontent.com/6562690/54934415-b4d25b80-4edb-11e9-8758-fb29ada50499.png' />";
+    } else if ( (Object.keys(GlobalConstants.chartJSON[this.chartID]).includes('x-axis')) && (Object.keys(GlobalConstants.chartJSON[this.chartID]).includes('x-axis')) ) {
+      var myChart = new Chart("current-chart", {
+        type: 'bar',
+        data: {
+            labels: GlobalConstants.chartJSON[this.chartID]['x-axis'],
+            datasets: [{
+                label: '# of Votes',
+                data: GlobalConstants.chartJSON[this.chartID]['y-axis'],
+                backgroundColor: GlobalConstants.colorwheel,
+                borderWidth: 1
+            }]
+        }
+        
+    });
+  } else {
+    (document.getElementById('current-chart') as HTMLInputElement).innerHTML =  "<img src='https://user-images.githubusercontent.com/6562690/54934415-b4d25b80-4edb-11e9-8758-fb29ada50499.png' />"
+    
+  }
+}
   
 
 
